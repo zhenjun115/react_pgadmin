@@ -1,0 +1,21 @@
+/*clear ul style*/
+.Tree, .Tree ul{
+    list-style: none;
+    padding-left: 20px;
+}
+
+.TreeNode.Open:before {
+    display: block;
+    content: ' ';
+    width: 24px;
+    height: 24px;
+    background: rebeccapurple;
+}
+
+.Tree .TreeNode.Close {
+    display: block;
+    content: ' ';
+    width: 24px;
+    height: 24px;
+    background: yellowgreen;
+}

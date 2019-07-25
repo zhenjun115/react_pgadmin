@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import hljs from 'highlight.js/lib/highlight';
 import sql from 'highlight.js/lib/languages/sql';
 import 'highlight.js/styles/monokai-sublime.css';
+import Tree from './Nav/Tree';
+import List from './Nav/List';
 
 // hljs.registerLanguage( 'sql', sql );
 
@@ -63,6 +65,9 @@ values (2, 'D''artagnian');
                         </code>
                     </pre>
                 </div>
+
+                <Tree />
+                <List />
         </div>
       );
     }
