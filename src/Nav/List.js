@@ -1,16 +1,22 @@
 import React from 'react';
 import './List.css';
 
-function List() {
+function List( props ) {
+    var renderRow = function( rowData, rowHead ) {
+        // console.log( listHead );
+        return <tr> { rowHead.map( (item) => <td>{rowData[item]}</td> ) } </tr>
+    };
+
+    const listHead = props.head.map( (item) => <th>{item}</th> );
+    const listBody = props.data.map( (rowData) => renderRow( rowData, props.head ) );
+
     return (
         <table className="List">
+            <thead>
+                { listHead }
+            </thead>
             <tbody>
-                <tr>
-                    <td> column 1,</td>
-                    <td> column 2,</td>
-                    <td> column 3,</td>
-                    <td> column 4</td>
-                </tr>
+                { listBody }
             </tbody>
         </table>
     );

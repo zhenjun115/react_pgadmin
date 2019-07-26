@@ -15,6 +15,13 @@ const treeData = [
     { "name": "node3", "child": [ { "name": "node3_1"}, { "name": "node3_2"} ] }
 ];
 
+const listHead = [
+    "id", "name", "info"
+]
+const listData = [
+    { "id": "1", "name": "ayao", "info": "better, to be better" }
+]
+
 class App extends React.Component {
     componentDidMount() {
         hljs.registerLanguage( 'sql', sql );
@@ -60,7 +67,7 @@ class App extends React.Component {
                 </div>
 
                 <Tree data={treeData}/>
-                <List />
+                <List head={listHead} data={listData} />
         </div>
       );
     }
