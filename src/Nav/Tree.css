@@ -4,18 +4,10 @@
     padding-left: 20px;
 }
 
-.TreeNode.Open:before {
-    display: block;
-    content: ' ';
-    width: 24px;
-    height: 24px;
+.DirNode.Show.Open > span{
     background: rebeccapurple;
 }
 
-.Tree .TreeNode.Close {
-    display: block;
-    content: ' ';
-    width: 24px;
-    height: 24px;
+.DirNode.Show.Close > span{
     background: yellowgreen;
 }

@@ -9,21 +9,27 @@ import List from './Nav/List';
 
 // hljs.registerLanguage( 'sql', sql );
 
+const treeData = [
+    { "name": "node1" },
+    { "name": "node2" },
+    { "name": "node3", "child": [ { "name": "node3_1"}, { "name": "node3_2"} ] }
+];
+
 class App extends React.Component {
     componentDidMount() {
         hljs.registerLanguage( 'sql', sql );
         this.updateCodeSyntaxHighlighting();
-      }
+    }
 
-      componentDidUpdate() {
+    componentDidUpdate() {
         this.updateCodeSyntaxHighlighting();
-      }
+    }
 
-      updateCodeSyntaxHighlighting = () => {
+    updateCodeSyntaxHighlighting = () => {
         document.querySelectorAll("pre code").forEach(block => {
           hljs.highlightBlock(block);
         });
-      };
+    };
     
     /* fetch( '/api' ).then( function( railsJson ) {
         console.log( railsJson );
@@ -32,41 +38,28 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                    </a>
-                </header>
                 <div>
                     <pre>
                         <code className="sql">
                             select * from database; insert into database values('1'); 
-CREATE TABLE "topic" (
-    "id" serial NOT NULL PRIMARY KEY,
-    "forum_id" integer NOT NULL,
-    "subject" varchar(255) NOT NULL
-);
-ALTER TABLE "topic"
-ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
-REFERENCES "forum" ("id");
+                            CREATE TABLE "topic" (
+                                "id" serial NOT NULL PRIMARY KEY,
+                                "forum_id" integer NOT NULL,
+                                "subject" varchar(255) NOT NULL
+                            );
 
--- Initials
-insert into "topic" ("forum_id", "subject")
-values (2, 'D''artagnian');
-            
+                            ALTER TABLE "topic"
+                            ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
+                            REFERENCES "forum" ("id");
+
+                            -- Initials
+                            insert into "topic" ("forum_id", "subject")
+                            values (2, 'D''artagnian');
                         </code>
                     </pre>
                 </div>
 
-                <Tree />
+                <Tree data={treeData}/>
                 <List />
         </div>
       );
