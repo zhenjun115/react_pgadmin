@@ -2,8 +2,13 @@ import React from 'react';
 import './List.css';
 
 function List( props ) {
+
+    /**
+     * 渲染列表行数据
+     * @param {*} rowData 
+     * @param {*} rowHead 
+     */
     var renderRow = function( rowData, rowHead ) {
-        // console.log( listHead );
         return <tr> { rowHead.map( (item) => <td>{rowData[item]}</td> ) } </tr>
     };
 

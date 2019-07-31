@@ -1,0 +1,19 @@
+ul.Menu {
+    list-style: none;
+}
+
+ul.Menu > li {
+    float: left;
+    margin-left: 3px;
+}
+
+ul.Menu::after {
+    display: block;
+    content: ' ';
+    clear: both;
+}
+
+ul.Menu ul.SubMenu {
+    list-style: none;
+    position: relative;
+}

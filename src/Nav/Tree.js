@@ -1,10 +1,20 @@
 import React from 'react';
 import "./Tree.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faFolder } from '@fortawesome/free-solid-svg-icons'
 
-function Tree( props ) {
-    var toggleDirNode = function() {
+class Tree extends React.Component {
+
+    constructor( props ) {
+        super( props );
+        this.state = {
+            data: props.data
+        }
+    }
+
+    toggleDirNode = function() {
         console.log( "toggle open" );
-    };
+    }
 
     /**
      * 树节点结构
@@ -15,12 +25,12 @@ function Tree( props ) {
       * 渲染非叶子节点
       * @param {*} dir 
       */
-    var renderDir = function( dir ) {
+    renderDir( dir ) {
         const nodes = dir.child.map( (node) => {
             if( !node.child ) {
-                return renderNode( node );
+                return this.renderNode( node );
             } else {
-                renderDir( node );
+                this.renderDir( node );
             }
         } );
 
@@ -29,34 +39,37 @@ function Tree( props ) {
                 {nodes}
             </ul>
         );
-    };
+    }
 
     /**
      * 渲染叶子节点
      * @param {*} node 
      */
-    var renderNode = function( node ) {
+    renderNode( node ) {
         return (
-            <li className="TreeNode" key={node.name}>
+            <li className="TreeNode" key={node.name} onClick={ () => node.icon = "default" }>
+                <span><FontAwesomeIcon icon={faFolder} /></span>
                 {node.name}
             </li>
         );
-    };
+    }
 
-    // console.log( props.data );
-    const tree = props.data.map( (node) => {
-        if( !node.child ) {
-            return renderNode(node);
-        } else {
-            return <li className="TreeNode">{node.name} { renderDir( node ) }</li>
-        }
-    } );
+    render() {
+        // console.log( props.data );
+        const tree = this.state.data.map( (node) => {
+            if( !node.child ) {
+                return this.renderNode(node);
+            } else {
+                return <li className="TreeNode">{node.name} { this.renderDir( node ) }</li>
+            }
+        } );
 
-    return(
-        <ul className="Tree">
-            {tree}
-        </ul>
-    );
+        return(
+            <ul className="Tree">
+                {tree}
+            </ul>
+        );
+    }
 }
 
 export default Tree;

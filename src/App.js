@@ -1,11 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 // import './App.css';
 import hljs from 'highlight.js/lib/highlight';
 import sql from 'highlight.js/lib/languages/sql';
 import 'highlight.js/styles/monokai-sublime.css';
 import Tree from './Nav/Tree';
 import List from './Nav/List';
+import Menu from './Nav/Menu';
 
 // hljs.registerLanguage( 'sql', sql );
 
@@ -66,8 +67,9 @@ class App extends React.Component {
                     </pre>
                 </div>
 
-                <Tree data={treeData}/>
-                <List head={listHead} data={listData} />
+                <Menu />
+                <Tree data={treeData} />
+                {/* <List head={listHead} data={listData} /> */}
         </div>
       );
     }
