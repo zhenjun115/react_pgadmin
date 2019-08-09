@@ -1,14 +1,11 @@
 import React from 'react';
 // import logo from './logo.svg';
 // import './App.css';
-import hljs from 'highlight.js/lib/highlight';
-import sql from 'highlight.js/lib/languages/sql';
-import 'highlight.js/styles/monokai-sublime.css';
-import Tree from './Nav/Tree';
-import List from './Nav/List';
+// import hljs from 'highlight.js/lib/highlight';
+// import sql from 'highlight.js/lib/languages/sql';
+// import 'highlight.js/styles/monokai-sublime.css';
+// import Tree from './Nav/Tree';
 import Menu from './Nav/Menu';
-
-// hljs.registerLanguage( 'sql', sql );
 
 const treeData = [
     { "name": "node1" },
@@ -25,17 +22,17 @@ const listData = [
 
 class App extends React.Component {
     componentDidMount() {
-        hljs.registerLanguage( 'sql', sql );
-        this.updateCodeSyntaxHighlighting();
+        // hljs.registerLanguage( 'sql', sql );
+        // this.updateCodeSyntaxHighlighting();
     }
 
     componentDidUpdate() {
-        this.updateCodeSyntaxHighlighting();
+        // this.updateCodeSyntaxHighlighting();
     }
 
     updateCodeSyntaxHighlighting = () => {
         document.querySelectorAll("pre code").forEach(block => {
-          hljs.highlightBlock(block);
+        //   hljs.highlightBlock(block);
         });
     };
     
@@ -46,7 +43,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <div>
+                {/* <div>
                     <pre>
                         <code className="sql">
                             select * from database; insert into database values('1'); 
@@ -60,17 +57,16 @@ class App extends React.Component {
                             ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
                             REFERENCES "forum" ("id");
 
-                            -- Initials
                             insert into "topic" ("forum_id", "subject")
                             values (2, 'D''artagnian');
                         </code>
                     </pre>
-                </div>
+                </div> */}
 
                 <Menu />
-                <Tree data={treeData} />
+                {/* <Tree data={treeData} /> */}
                 {/* <List head={listHead} data={listData} /> */}
-        </div>
+            </div>
       );
     }
 }

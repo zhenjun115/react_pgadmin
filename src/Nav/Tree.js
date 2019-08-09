@@ -1,19 +1,22 @@
 import React from 'react';
 import "./Tree.css";
+import "../animation/common.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faFolder } from '@fortawesome/free-solid-svg-icons'
+import { faFolder } from '@fortawesome/free-solid-svg-icons'
 
 class Tree extends React.Component {
 
     constructor( props ) {
         super( props );
         this.state = {
-            data: props.data
+            data: props.data,
+            open: true
         }
     }
 
     toggleDirNode = function() {
-        console.log( "toggle open" );
+        this.setState( { open: !this.state.open } );
+        console.log( this.state );
     }
 
     /**
@@ -35,7 +38,7 @@ class Tree extends React.Component {
         } );
 
         return (
-            <ul className="TreeDir">
+            <ul className="TreeDir" className = {this.state.open ? "fadeIn" : "fadeOut"}>
                 {nodes}
             </ul>
         );
@@ -47,8 +50,8 @@ class Tree extends React.Component {
      */
     renderNode( node ) {
         return (
-            <li className="TreeNode" key={node.name} onClick={ () => node.icon = "default" }>
-                <span><FontAwesomeIcon icon={faFolder} /></span>
+            <li className="TreeNode" key={node.name} onClick={ () => this.toggleDirNode() }>
+                <span className={ this.state.open ? "fadeIn": "fadeOut" }><FontAwesomeIcon icon={faFolder} /></span>
                 {node.name}
             </li>
         );
@@ -60,7 +63,7 @@ class Tree extends React.Component {
             if( !node.child ) {
                 return this.renderNode(node);
             } else {
-                return <li className="TreeNode">{node.name} { this.renderDir( node ) }</li>
+                return <li className="TreeNode" key={node.name}>{node.name} { this.renderDir( node ) }</li>
             }
         } );
 

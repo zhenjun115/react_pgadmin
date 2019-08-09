@@ -1,0 +1,31 @@
+.fadeIn {
+    animation: fadeIn 3s ease-in 0;
+}
+
+.fadeOut {
+    animation: fadeOut 3s ease-in 0;
+}
+
+@-moz-keyframes fadeIn {
+    from {
+        /* opacity: 0; */
+        background: black
+    }
+
+    to {
+        /* opacity: 100%; */
+        background: red;
+    }
+}
+
+@-moz-keyframes fadeOut {
+    from {
+        /* opacity: 100%; */
+        background: red;
+    }
+
+    to {
+        /* opacity: 0; */
+        background: black;
+    }
+}
