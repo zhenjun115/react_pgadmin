@@ -23,14 +23,12 @@ class Menu extends React.Component {
                 <li onClick={this.toggle}>1
                     <CSSTransition
                         in={this.state.show}
-                        timeout={400}
+                        timeout={200}
                         classNames="my-node"
-                        key={1}
                     >
                         <div>
-                            { "only"}
+                            only
                         </div>
-                    }
                     </CSSTransition>
                 </li>
                 <li>2</li>
