@@ -4,39 +4,41 @@ import { CSSTransition } from "react-transition-group";
 
 class Menu extends React.Component {
 
-    constructor( props ) {
-        super( props );
-        this.state = {
-            'show': true
-        };
-    }
+  constructor( props ) {
+    super( props );
 
-    toggle = () => {
-        this.setState( prevState => ({
-            'show': !prevState.show
-        }))
-    }
+    this.state = {
+      'show': false,
+      'data': [ { 'text': 'menu1', 'child': [ { 'text': 'menu1_1' }, { 'text': 'menu1_2' } ], 'show': false }, { 'text': 'menu2' }, { 'text': 'menu3' }, { 'text': 'menu4' } ]
+    };
+  }
 
-    render() {
-        return (
-            <ul className="Menu">
-                <li onClick={this.toggle}>1
-                    <CSSTransition
-                        in={this.state.show}
-                        timeout={200}
-                        classNames="my-node"
-                    >
-                        <div>
-                            only
-                        </div>
-                    </CSSTransition>
-                </li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-            </ul>
-        );
-    }
+  toggle = () => {
+    this.setState( prevState => ({
+      'show': !prevState.show
+    }))
+  }
+
+  menuItem = ( menuItemData ) => {
+    return <li onClick={this.toggle}>{ menuItemData.text } { menuItemData.child ? this.subMenu( menuItemData.child ) : '' }</li>
+  }
+
+  subMenu = ( subMenuData ) => {
+    return(
+      <CSSTransition in={ subMenuData.show ? subMenuData.show : '' } timeout={200} className="my-node">
+        <ul className="SubMenu">
+          { subMenuData.map( ( itemData ) => this.menuItem( itemData ) ) }
+        </ul>
+      </CSSTransition> )
+  }
+
+  render() {
+    return (
+      <ul className="Menu">
+        { this.state.data.map( ( itemData ) => this.menuItem( itemData ) ) }
+      </ul>
+    );
+  }
 }
 
 export default Menu;
